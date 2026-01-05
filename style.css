@@ -1,0 +1,7 @@
+/* Layer the close button above dropdown content without changing layout */
+.nav_close-btn {
+  z-index: 1000;
+}
+.nav_close-btn svg {
+  pointer-events: none;
+}
