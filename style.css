@@ -5,3 +5,17 @@
 .nav_close-btn svg {
   pointer-events: none;
 }
+
+.nav_overlay {
+  display: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.nav_overlay.is-open {
+  display: block;
+  opacity: 1;
+}
+.nav_overlay.is-closing {
+  display: block;
+  opacity: 0;
+}
