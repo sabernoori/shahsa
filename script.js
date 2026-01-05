@@ -25,6 +25,7 @@ if (!window.__navDropdownCloseSetupDone) {
         }
       }
     };
+    
     lists.forEach((list) => {
       const closeBtn = list.querySelector('.nav_close-btn');
       const dropdown = list.closest('.w-dropdown');
