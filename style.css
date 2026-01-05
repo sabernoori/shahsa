@@ -19,3 +19,140 @@
   display: block;
   opacity: 0;
 }
+
+
+
+
+
+/* Moved styles from main file */
+/* .nav_megamenu: added transform-origin: top; will-change: opacity, transform, clip-path */
+/* .nav_megamenu.w--open: changed animation to navOpen 600ms ease (Jitter Mask Reveal: down, zoom content) */
+/* .nav_megamenu.w--open .nav_logo-wrapper.is-free: added animation logoReveal 240ms ease-out both (from blur+scale .7 to normal) */
+/* .nav_megamenu_list links: added staggered Mask & Slide Up reveal (1s, slow down) */
+
+.nav_megamenu {
+  transform-origin: top center;
+  will-change: opacity, transform, clip-path;
+}
+.nav_megamenu.w--open {
+  overflow: hidden;
+  animation: navOpen 400ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+.nav_megamenu.w--open .nav_logo-wrapper.is-free {
+  will-change: filter, transform, opacity;
+  transform-origin: top left;
+  animation: logoReveal 700ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
+}
+@keyframes navOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) ;
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) ;
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateX(-20.5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav_megamenu.w--open {
+    animation-duration: 1ms;
+  }
+  .nav_megamenu.w--open .nav_logo-wrapper.is-free {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}
+
+/* end of moved styles. */
+
+/* Staggered link reveal (Mask & Slide Up, starts 0.1s after logo reveal) */
+.nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu {
+  will-change: opacity, transform, clip-path;
+  animation: linkRevealUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 300ms; /* logo delay 200ms + 100ms */
+}
+.nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu:nth-child(2) { animation-delay: 360ms; }
+.nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu:nth-child(3) { animation-delay: 420ms; }
+.nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu:nth-child(4) { animation-delay: 480ms; }
+.nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu:nth-child(5) { animation-delay: 540ms; }
+.nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu:nth-child(6) { animation-delay: 600ms; }
+
+@keyframes linkRevealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20.5px);
+    clip-path: inset(100% 0 0 0); /* mask from bottom-to-top */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav_megamenu.w--open .nav_megamenu_list .nav_link.is-megamenu {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}
+
+.nav_megamenu.w--open .nav_cards {
+  will-change: opacity, transform;
+  animation: cardRevealUp 600ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
+  animation-delay: 480ms;
+}
+.nav_megamenu.w--open .nav_cards + .nav_cards { animation-delay: 650ms; }
+.nav_megamenu.w--open .nav_cards + .nav_cards + .nav_cards { animation-delay: 820ms; }
+.nav_megamenu.w--open .nav_cta-card {
+  will-change: opacity, transform;
+  animation: cardRevealUp 600ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
+  animation-delay: 990ms;
+}
+
+.nav_megamenu.w--open .nav_cards-holder.is-mobile-show .nav_cards {
+  will-change: opacity, transform;
+  animation: cardRevealUp 600ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+.nav_megamenu.w--open .nav_cards-holder.is-mobile-show .nav_cards:first-of-type { animation-delay: 650ms; }
+.nav_megamenu.w--open .nav_cards-holder.is-mobile-show .nav_cards:last-of-type { animation-delay: 820ms; }
+
+@keyframes cardRevealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav_megamenu.w--open .nav_megamenu_second-row > a.nav_cards,
+  .nav_megamenu.w--open .nav_megamenu_second-row > a.nav_cta-card,
+  .nav_megamenu.w--open .nav_cards-holder.is-mobile-show .nav_cards {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .nav_cards-holder.is-mobile-show .nav_cards {
+    animation: none;
+  }
+}

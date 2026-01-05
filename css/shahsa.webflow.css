@@ -1558,6 +1558,10 @@ figcaption {
   height: .5625rem;
   display: flex;
 }
+.nav_logo-wrapper.is-free {
+  width: auto;
+  height: auto;
+}
 
 .nav_link {
   background-color: var(--base-color-neutral--white);
